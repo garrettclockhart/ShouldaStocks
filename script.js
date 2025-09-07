@@ -51,6 +51,7 @@ class ShouldaStocksApp {
         this.refreshInterval = null;
         this.lastRefreshTime = null;
         this.currentProduct = null;
+        this.dataCache = new Map(); // Cache for API responses
         this.init();
     }
 
@@ -221,14 +222,93 @@ class ShouldaStocksApp {
     }
 
     async fetchStockData(symbol, startDate) {
-        // Using Alpha Vantage API (free tier)
-        const apiKey = 'demo'; // In production, you'd use a real API key
-        const endDate = new Date().toISOString().split('T')[0];
+        const apiKey = 'P87EXAT1TEGBGNG3';
+        const cacheKey = `${symbol}_${startDate}`;
         
-        // For demo purposes, we'll simulate stock data
-        // In a real app, you'd call: `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`
+        // Check cache first (cache for 1 hour)
+        if (this.dataCache.has(cacheKey)) {
+            const cachedData = this.dataCache.get(cacheKey);
+            const cacheTime = cachedData.timestamp;
+            const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+            
+            if (Date.now() - cacheTime < oneHour) {
+                console.log('Using cached data for', symbol);
+                return cachedData.data;
+            }
+        }
         
-        return this.generateMockStockData(symbol, startDate);
+        try {
+            // Show API status
+            this.showApiStatus('Fetching real-time data...');
+            
+            // Try to get real data from Alpha Vantage
+            const response = await fetch(
+                `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}&outputsize=full`
+            );
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            // Check for API errors
+            if (data['Error Message']) {
+                throw new Error(data['Error Message']);
+            }
+            
+            if (data['Note']) {
+                console.warn('API rate limit reached, using cached data');
+                return this.generateMockStockData(symbol, startDate);
+            }
+            
+            // Process the real data
+            const timeSeries = data['Time Series (Daily)'];
+            if (!timeSeries) {
+                throw new Error('No time series data available');
+            }
+            
+            const processedData = this.processAlphaVantageData(timeSeries, startDate);
+            
+            // Cache the data
+            this.dataCache.set(cacheKey, {
+                data: processedData,
+                timestamp: Date.now()
+            });
+            
+            console.log('Fetched fresh data for', symbol);
+            this.showApiStatus('Real-time data loaded!');
+            return processedData;
+            
+        } catch (error) {
+            console.error('Error fetching real stock data:', error);
+            console.log('Falling back to mock data');
+            this.showApiStatus('Using simulated data');
+            return this.generateMockStockData(symbol, startDate);
+        }
+    }
+
+    processAlphaVantageData(timeSeries, startDate) {
+        const data = [];
+        const startDateObj = new Date(startDate);
+        
+        // Convert time series to array and filter by start date
+        Object.keys(timeSeries)
+            .filter(date => new Date(date) >= startDateObj)
+            .sort((a, b) => new Date(a) - new Date(b))
+            .forEach(date => {
+                const dayData = timeSeries[date];
+                data.push({
+                    date: date,
+                    close: parseFloat(dayData['4. close']),
+                    open: parseFloat(dayData['1. open']),
+                    high: parseFloat(dayData['2. high']),
+                    low: parseFloat(dayData['3. low']),
+                    volume: parseInt(dayData['5. volume'])
+                });
+            });
+        
+        return data;
     }
 
     generateMockStockData(symbol, startDate) {
@@ -415,6 +495,36 @@ class ShouldaStocksApp {
         document.getElementById('error').style.display = 'block';
         document.getElementById('resultsSection').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
+    }
+
+    showApiStatus(status) {
+        // Add a small status indicator for API calls
+        const statusEl = document.createElement('div');
+        statusEl.id = 'apiStatus';
+        statusEl.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+            display: none;
+        `;
+        
+        if (!document.getElementById('apiStatus')) {
+            document.body.appendChild(statusEl);
+        }
+        
+        const el = document.getElementById('apiStatus');
+        el.textContent = status;
+        el.style.display = 'block';
+        
+        setTimeout(() => {
+            el.style.display = 'none';
+        }, 3000);
     }
 }
 
