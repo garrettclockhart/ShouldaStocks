@@ -48,12 +48,43 @@ const productDatabase = {
 class ShouldaStocksApp {
     constructor() {
         this.chart = null;
+        this.refreshInterval = null;
+        this.lastRefreshTime = null;
+        this.currentProduct = null;
         this.init();
     }
 
     init() {
         this.setupEventListeners();
         this.setupSearchSuggestions();
+        this.startDataRefresh();
+    }
+
+    startDataRefresh() {
+        // Clear any existing interval
+        if (this.refreshInterval) {
+            clearInterval(this.refreshInterval);
+        }
+        
+        // Set up refresh every 15 minutes (900,000 milliseconds)
+        this.refreshInterval = setInterval(() => {
+            this.refreshCurrentData();
+        }, 15 * 60 * 1000); // 15 minutes
+    }
+
+    refreshCurrentData() {
+        if (this.currentProduct) {
+            console.log('Refreshing stock data...');
+            // Refresh data without showing loading spinner
+            this.analyzeInvestment(this.currentProduct, true);
+        }
+    }
+
+    stopDataRefresh() {
+        if (this.refreshInterval) {
+            clearInterval(this.refreshInterval);
+            this.refreshInterval = null;
+        }
     }
 
     setupEventListeners() {
@@ -142,6 +173,7 @@ class ShouldaStocksApp {
         }
 
         const product = productDatabase[productKey];
+        this.currentProduct = product; // Store current product for refresh
         this.showLoading(true);
         
         try {
@@ -154,7 +186,7 @@ class ShouldaStocksApp {
         }
     }
 
-    async analyzeInvestment(product) {
+    async analyzeInvestment(product, silentRefresh = false) {
         try {
             // Get historical stock data
             const stockData = await this.fetchStockData(product.symbol, product.releaseDate);
@@ -178,11 +210,13 @@ class ShouldaStocksApp {
                 totalReturn,
                 returnPercentage,
                 stockData
-            });
+            }, silentRefresh);
 
         } catch (error) {
             console.error('Error in investment analysis:', error);
-            throw error;
+            if (!silentRefresh) {
+                throw error;
+            }
         }
     }
 
@@ -247,10 +281,12 @@ class ShouldaStocksApp {
         return data;
     }
 
-    displayResults(product, metrics) {
-        // Show results section
-        document.getElementById('resultsSection').style.display = 'block';
-        document.getElementById('error').style.display = 'none';
+    displayResults(product, metrics, silentRefresh = false) {
+        // Show results section (only if not silent refresh)
+        if (!silentRefresh) {
+            document.getElementById('resultsSection').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+        }
 
         // Update product info
         document.getElementById('productName').textContent = product.name;
@@ -313,6 +349,7 @@ class ShouldaStocksApp {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                aspectRatio: 2,
                 plugins: {
                     title: {
                         display: true,
@@ -382,6 +419,14 @@ class ShouldaStocksApp {
 }
 
 // Initialize the app when the page loads
+let app;
 document.addEventListener('DOMContentLoaded', () => {
-    new ShouldaStocksApp();
+    app = new ShouldaStocksApp();
+});
+
+// Clean up intervals when page is unloaded
+window.addEventListener('beforeunload', () => {
+    if (app) {
+        app.stopDataRefresh();
+    }
 });
