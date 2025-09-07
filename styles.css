@@ -173,7 +173,10 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     overflow: hidden;
-    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    position: relative;
 }
 
 .suggestion-item {
@@ -189,6 +192,17 @@ body {
 
 .suggestion-item:last-child {
     border-bottom: none;
+}
+
+.suggestion-name {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.suggestion-company {
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .results-section {
