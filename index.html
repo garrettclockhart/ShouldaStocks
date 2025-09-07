@@ -21,11 +21,40 @@
 
         <main class="main-content">
             <div class="search-section">
-                <div class="search-container">
-                    <input type="text" id="productSearch" placeholder="Search for any product (iPhone, Tesla Model 3, MacBook Pro, etc.)" class="search-input">
-                    <button id="searchBtn" class="search-btn">Search</button>
+                <div class="search-methods">
+                    <div class="search-tabs">
+                        <button class="tab-btn active" data-tab="search">Search Products</button>
+                        <button class="tab-btn" data-tab="browse">Browse by Company</button>
+                    </div>
+                    
+                    <!-- Search Tab -->
+                    <div class="tab-content active" id="searchTab">
+                        <div class="search-container">
+                            <input type="text" id="productSearch" placeholder="Search for any product (iPhone, Tesla Model 3, MacBook Pro, etc.)" class="search-input">
+                            <button id="searchBtn" class="search-btn">Search</button>
+                        </div>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    
+                    <!-- Browse Tab -->
+                    <div class="tab-content" id="browseTab">
+                        <div class="browse-container">
+                            <div class="dropdown-group">
+                                <label for="companySelect">Select Company:</label>
+                                <select id="companySelect" class="company-dropdown">
+                                    <option value="">Choose a company...</option>
+                                </select>
+                            </div>
+                            <div class="dropdown-group">
+                                <label for="productSelect">Select Product:</label>
+                                <select id="productSelect" class="product-dropdown" disabled>
+                                    <option value="">First select a company</option>
+                                </select>
+                            </div>
+                            <button id="browseSearchBtn" class="search-btn" disabled>Analyze Investment</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="search-suggestions" id="searchSuggestions"></div>
             </div>
 
             <div class="results-section" id="resultsSection" style="display: none;">

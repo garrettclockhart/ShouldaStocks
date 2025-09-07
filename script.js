@@ -1,6 +1,7 @@
 // Comprehensive product database with major US consumer companies
 const productDatabase = {
-    // Apple Products
+    // Apple Products - Comprehensive History
+    // iPhone Series
     'iphone 15 pro max': { name: 'iPhone 15 Pro Max', price: 1199, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 15 pro': { name: 'iPhone 15 Pro', price: 999, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 15 plus': { name: 'iPhone 15 Plus', price: 899, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
@@ -13,20 +14,140 @@ const productDatabase = {
     'iphone 13 pro': { name: 'iPhone 13 Pro', price: 999, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 13': { name: 'iPhone 13', price: 799, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 13 mini': { name: 'iPhone 13 mini', price: 699, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 12 pro max': { name: 'iPhone 12 Pro Max', price: 1099, releaseDate: '2020-11-13', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 12 pro': { name: 'iPhone 12 Pro', price: 999, releaseDate: '2020-10-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 12': { name: 'iPhone 12', price: 799, releaseDate: '2020-10-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 12 mini': { name: 'iPhone 12 mini', price: 699, releaseDate: '2020-11-13', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 11 pro max': { name: 'iPhone 11 Pro Max', price: 1099, releaseDate: '2019-09-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 11 pro': { name: 'iPhone 11 Pro', price: 999, releaseDate: '2019-09-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 11': { name: 'iPhone 11', price: 699, releaseDate: '2019-09-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone xs max': { name: 'iPhone XS Max', price: 1099, releaseDate: '2018-09-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone xs': { name: 'iPhone XS', price: 999, releaseDate: '2018-09-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone xr': { name: 'iPhone XR', price: 749, releaseDate: '2018-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone x': { name: 'iPhone X', price: 999, releaseDate: '2017-11-03', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 8 plus': { name: 'iPhone 8 Plus', price: 799, releaseDate: '2017-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 8': { name: 'iPhone 8', price: 699, releaseDate: '2017-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 7 plus': { name: 'iPhone 7 Plus', price: 769, releaseDate: '2016-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 7': { name: 'iPhone 7', price: 649, releaseDate: '2016-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 6s plus': { name: 'iPhone 6s Plus', price: 749, releaseDate: '2015-09-25', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 6s': { name: 'iPhone 6s', price: 649, releaseDate: '2015-09-25', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 6 plus': { name: 'iPhone 6 Plus', price: 749, releaseDate: '2014-09-19', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 6': { name: 'iPhone 6', price: 649, releaseDate: '2014-09-19', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 5s': { name: 'iPhone 5s', price: 649, releaseDate: '2013-09-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 5c': { name: 'iPhone 5c', price: 549, releaseDate: '2013-09-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 5': { name: 'iPhone 5', price: 649, releaseDate: '2012-09-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 4s': { name: 'iPhone 4s', price: 649, releaseDate: '2011-10-14', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 4': { name: 'iPhone 4', price: 599, releaseDate: '2010-06-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 3gs': { name: 'iPhone 3GS', price: 599, releaseDate: '2009-06-19', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 3g': { name: 'iPhone 3G', price: 599, releaseDate: '2008-07-11', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone': { name: 'iPhone (Original)', price: 599, releaseDate: '2007-06-29', company: 'Apple Inc.', symbol: 'AAPL' },
+
+    // MacBook Series
     'macbook pro 16': { name: 'MacBook Pro 16"', price: 2499, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
     'macbook pro 14': { name: 'MacBook Pro 14"', price: 1999, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
     'macbook air m3': { name: 'MacBook Air M3', price: 1099, releaseDate: '2024-03-08', company: 'Apple Inc.', symbol: 'AAPL' },
     'macbook air m2': { name: 'MacBook Air M2', price: 1199, releaseDate: '2022-07-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook air m1': { name: 'MacBook Air M1', price: 999, releaseDate: '2020-11-17', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook pro 13 m2': { name: 'MacBook Pro 13" M2', price: 1299, releaseDate: '2022-06-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook pro 13 m1': { name: 'MacBook Pro 13" M1', price: 1299, releaseDate: '2020-11-17', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook air intel': { name: 'MacBook Air Intel', price: 999, releaseDate: '2018-10-30', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook pro 15': { name: 'MacBook Pro 15"', price: 2399, releaseDate: '2016-10-27', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook pro 13': { name: 'MacBook Pro 13"', price: 1499, releaseDate: '2016-10-27', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook': { name: 'MacBook', price: 1299, releaseDate: '2015-04-10', company: 'Apple Inc.', symbol: 'AAPL' },
+
+    // iPad Series
     'ipad pro 12.9': { name: 'iPad Pro 12.9"', price: 1099, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
     'ipad pro 11': { name: 'iPad Pro 11"', price: 799, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
     'ipad air': { name: 'iPad Air', price: 599, releaseDate: '2022-03-18', company: 'Apple Inc.', symbol: 'AAPL' },
     'ipad': { name: 'iPad', price: 449, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
-    'airpods pro 2': { name: 'AirPods Pro 2nd Gen', price: 249, releaseDate: '2022-09-23', company: 'Apple Inc.', symbol: 'AAPL' },
-    'airpods 3': { name: 'AirPods 3rd Gen', price: 179, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
-    'airpods max': { name: 'AirPods Max', price: 549, releaseDate: '2020-12-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad mini': { name: 'iPad mini', price: 499, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 12.9 2021': { name: 'iPad Pro 12.9" (2021)', price: 1099, releaseDate: '2021-05-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 11 2021': { name: 'iPad Pro 11" (2021)', price: 799, releaseDate: '2021-05-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad air 2020': { name: 'iPad Air (2020)', price: 599, releaseDate: '2020-10-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad 2020': { name: 'iPad (2020)', price: 329, releaseDate: '2020-09-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad mini 2019': { name: 'iPad mini (2019)', price: 399, releaseDate: '2019-03-18', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad air 2019': { name: 'iPad Air (2019)', price: 499, releaseDate: '2019-03-18', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 12.9 2018': { name: 'iPad Pro 12.9" (2018)', price: 999, releaseDate: '2018-11-07', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 11 2018': { name: 'iPad Pro 11" (2018)', price: 799, releaseDate: '2018-11-07', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad 2018': { name: 'iPad (2018)', price: 329, releaseDate: '2018-03-27', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 12.9 2017': { name: 'iPad Pro 12.9" (2017)', price: 799, releaseDate: '2017-06-13', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 10.5': { name: 'iPad Pro 10.5"', price: 649, releaseDate: '2017-06-13', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad 2017': { name: 'iPad (2017)', price: 329, releaseDate: '2017-03-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 12.9 2015': { name: 'iPad Pro 12.9" (2015)', price: 799, releaseDate: '2015-11-11', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 9.7': { name: 'iPad Pro 9.7"', price: 599, releaseDate: '2016-03-31', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad air 2': { name: 'iPad Air 2', price: 499, releaseDate: '2014-10-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad air': { name: 'iPad Air', price: 499, releaseDate: '2013-11-01', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad mini 3': { name: 'iPad mini 3', price: 399, releaseDate: '2014-10-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad mini 2': { name: 'iPad mini 2', price: 399, releaseDate: '2013-11-12', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad mini': { name: 'iPad mini', price: 329, releaseDate: '2012-11-02', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad 4': { name: 'iPad (4th generation)', price: 499, releaseDate: '2012-11-02', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad 3': { name: 'iPad (3rd generation)', price: 499, releaseDate: '2012-03-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad 2': { name: 'iPad 2', price: 499, releaseDate: '2011-03-11', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad': { name: 'iPad (Original)', price: 499, releaseDate: '2010-04-03', company: 'Apple Inc.', symbol: 'AAPL' },
+
+    // iPod Series - Historical Products
+    'ipod touch 7': { name: 'iPod touch (7th generation)', price: 199, releaseDate: '2019-05-28', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod touch 6': { name: 'iPod touch (6th generation)', price: 199, releaseDate: '2015-07-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod touch 5': { name: 'iPod touch (5th generation)', price: 199, releaseDate: '2012-10-11', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod touch 4': { name: 'iPod touch (4th generation)', price: 229, releaseDate: '2010-09-08', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod touch 3': { name: 'iPod touch (3rd generation)', price: 199, releaseDate: '2009-09-09', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod touch 2': { name: 'iPod touch (2nd generation)', price: 229, releaseDate: '2008-09-09', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod touch': { name: 'iPod touch (Original)', price: 299, releaseDate: '2007-09-05', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod classic 160gb': { name: 'iPod Classic 160GB', price: 249, releaseDate: '2009-09-09', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod classic 120gb': { name: 'iPod Classic 120GB', price: 249, releaseDate: '2008-09-09', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod classic 80gb': { name: 'iPod Classic 80GB', price: 249, releaseDate: '2007-09-05', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod classic 30gb': { name: 'iPod Classic 30GB', price: 249, releaseDate: '2007-09-05', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod classic': { name: 'iPod Classic', price: 249, releaseDate: '2007-09-05', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod video 60gb': { name: 'iPod Video 60GB', price: 399, releaseDate: '2005-10-12', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod video 30gb': { name: 'iPod Video 30GB', price: 299, releaseDate: '2005-10-12', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod video': { name: 'iPod Video', price: 299, releaseDate: '2005-10-12', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod photo 60gb': { name: 'iPod Photo 60GB', price: 499, releaseDate: '2004-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod photo 40gb': { name: 'iPod Photo 40GB', price: 399, releaseDate: '2004-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod photo': { name: 'iPod Photo', price: 399, releaseDate: '2004-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod mini 6gb': { name: 'iPod mini 6GB', price: 249, releaseDate: '2004-02-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod mini 4gb': { name: 'iPod mini 4GB', price: 249, releaseDate: '2004-02-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod mini': { name: 'iPod mini', price: 249, releaseDate: '2004-02-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 3g 40gb': { name: 'iPod (3rd generation) 40GB', price: 499, releaseDate: '2003-04-28', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 3g 30gb': { name: 'iPod (3rd generation) 30GB', price: 399, releaseDate: '2003-04-28', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 3g 15gb': { name: 'iPod (3rd generation) 15GB', price: 299, releaseDate: '2003-04-28', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 3g': { name: 'iPod (3rd generation)', price: 299, releaseDate: '2003-04-28', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 2g 20gb': { name: 'iPod (2nd generation) 20GB', price: 399, releaseDate: '2002-07-17', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 2g 10gb': { name: 'iPod (2nd generation) 10GB', price: 299, releaseDate: '2002-07-17', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 2g': { name: 'iPod (2nd generation)', price: 299, releaseDate: '2002-07-17', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod 5gb': { name: 'iPod (Original) 5GB', price: 399, releaseDate: '2001-10-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipod': { name: 'iPod (Original)', price: 399, releaseDate: '2001-10-23', company: 'Apple Inc.', symbol: 'AAPL' },
+
+    // Apple Watch Series
     'apple watch ultra 2': { name: 'Apple Watch Ultra 2', price: 799, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
     'apple watch series 9': { name: 'Apple Watch Series 9', price: 399, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
     'apple watch se': { name: 'Apple Watch SE', price: 249, releaseDate: '2022-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch ultra': { name: 'Apple Watch Ultra', price: 799, releaseDate: '2022-09-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 8': { name: 'Apple Watch Series 8', price: 399, releaseDate: '2022-09-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 7': { name: 'Apple Watch Series 7', price: 399, releaseDate: '2021-10-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 6': { name: 'Apple Watch Series 6', price: 399, releaseDate: '2020-09-18', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch se 2020': { name: 'Apple Watch SE (2020)', price: 279, releaseDate: '2020-09-18', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 5': { name: 'Apple Watch Series 5', price: 399, releaseDate: '2019-09-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 4': { name: 'Apple Watch Series 4', price: 399, releaseDate: '2018-09-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 3': { name: 'Apple Watch Series 3', price: 329, releaseDate: '2017-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 2': { name: 'Apple Watch Series 2', price: 369, releaseDate: '2016-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 1': { name: 'Apple Watch Series 1', price: 269, releaseDate: '2016-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch': { name: 'Apple Watch (Original)', price: 349, releaseDate: '2015-04-24', company: 'Apple Inc.', symbol: 'AAPL' },
+
+    // AirPods Series
+    'airpods pro 2': { name: 'AirPods Pro 2nd Gen', price: 249, releaseDate: '2022-09-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods 3': { name: 'AirPods 3rd Gen', price: 179, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods max': { name: 'AirPods Max', price: 549, releaseDate: '2020-12-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods pro': { name: 'AirPods Pro', price: 249, releaseDate: '2019-10-30', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods 2': { name: 'AirPods 2nd Gen', price: 159, releaseDate: '2019-03-20', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods': { name: 'AirPods (Original)', price: 159, releaseDate: '2016-12-13', company: 'Apple Inc.', symbol: 'AAPL' },
+
+    // Mac Desktop Series
+    'imac 24': { name: 'iMac 24"', price: 1299, releaseDate: '2021-05-21', company: 'Apple Inc.', symbol: 'AAPL' },
+    'imac 27': { name: 'iMac 27"', price: 1799, releaseDate: '2020-08-04', company: 'Apple Inc.', symbol: 'AAPL' },
+    'mac studio': { name: 'Mac Studio', price: 1999, releaseDate: '2022-03-18', company: 'Apple Inc.', symbol: 'AAPL' },
+    'mac pro': { name: 'Mac Pro', price: 5999, releaseDate: '2019-12-10', company: 'Apple Inc.', symbol: 'AAPL' },
+    'mac mini m2': { name: 'Mac mini M2', price: 599, releaseDate: '2023-01-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'mac mini m1': { name: 'Mac mini M1', price: 699, releaseDate: '2020-11-17', company: 'Apple Inc.', symbol: 'AAPL' },
 
     // Tesla Products
     'tesla model s plaid': { name: 'Tesla Model S Plaid', price: 108990, releaseDate: '2021-06-10', company: 'Tesla Inc.', symbol: 'TSLA' },
@@ -177,6 +298,8 @@ class ShouldaStocksApp {
     init() {
         this.setupEventListeners();
         this.setupSearchSuggestions();
+        this.setupTabSystem();
+        this.setupCompanyDropdown();
         this.startDataRefresh();
     }
 
@@ -210,8 +333,11 @@ class ShouldaStocksApp {
     setupEventListeners() {
         const searchBtn = document.getElementById('searchBtn');
         const searchInput = document.getElementById('productSearch');
+        const browseSearchBtn = document.getElementById('browseSearchBtn');
 
         searchBtn.addEventListener('click', () => this.handleSearch());
+        browseSearchBtn.addEventListener('click', () => this.handleBrowseSearch());
+        
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 this.handleSearch();
@@ -220,6 +346,67 @@ class ShouldaStocksApp {
 
         searchInput.addEventListener('input', (e) => {
             this.showSuggestions(e.target.value);
+        });
+    }
+
+    setupTabSystem() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.dataset.tab;
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(targetTab + 'Tab').classList.add('active');
+            });
+        });
+    }
+
+    setupCompanyDropdown() {
+        const companySelect = document.getElementById('companySelect');
+        const productSelect = document.getElementById('productSelect');
+        
+        // Get unique companies from product database
+        const companies = [...new Set(Object.values(productDatabase).map(product => product.company))].sort();
+        
+        // Populate company dropdown
+        companies.forEach(company => {
+            const option = document.createElement('option');
+            option.value = company;
+            option.textContent = company;
+            companySelect.appendChild(option);
+        });
+        
+        // Handle company selection
+        companySelect.addEventListener('change', (e) => {
+            const selectedCompany = e.target.value;
+            productSelect.innerHTML = '<option value="">Choose a product...</option>';
+            
+            if (selectedCompany) {
+                // Filter products by company
+                const companyProducts = Object.entries(productDatabase)
+                    .filter(([key, product]) => product.company === selectedCompany)
+                    .sort((a, b) => new Date(b[1].releaseDate) - new Date(a[1].releaseDate)); // Sort by release date, newest first
+                
+                companyProducts.forEach(([key, product]) => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = `${product.name} - $${product.price.toLocaleString()} (${new Date(product.releaseDate).getFullYear()})`;
+                    productSelect.appendChild(option);
+                });
+                
+                productSelect.disabled = false;
+                document.getElementById('browseSearchBtn').disabled = false;
+            } else {
+                productSelect.disabled = true;
+                document.getElementById('browseSearchBtn').disabled = true;
+            }
         });
     }
 
@@ -293,6 +480,29 @@ class ShouldaStocksApp {
         }
 
         const product = productDatabase[productKey];
+        this.currentProduct = product; // Store current product for refresh
+        this.showLoading(true);
+        
+        try {
+            await this.analyzeInvestment(product);
+        } catch (error) {
+            console.error('Error analyzing investment:', error);
+            this.showError('Failed to fetch stock data. Please try again.');
+        } finally {
+            this.showLoading(false);
+        }
+    }
+
+    async handleBrowseSearch() {
+        const productSelect = document.getElementById('productSelect');
+        const selectedProductKey = productSelect.value;
+        
+        if (!selectedProductKey) {
+            this.showError('Please select a product');
+            return;
+        }
+
+        const product = productDatabase[selectedProductKey];
         this.currentProduct = product; // Store current product for refresh
         this.showLoading(true);
         
@@ -563,6 +773,7 @@ class ShouldaStocksApp {
         } else {
             splitInfoEl.style.display = 'none';
         }
+    }
 
     createChart(product, stockData, sharesPurchased, splits = []) {
         const ctx = document.getElementById('investmentChart').getContext('2d');
