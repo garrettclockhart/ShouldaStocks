@@ -1,48 +1,167 @@
-// Product database with company mappings and stock symbols
+// Comprehensive product database with major US consumer companies
 const productDatabase = {
     // Apple Products
+    'iphone 15 pro max': { name: 'iPhone 15 Pro Max', price: 1199, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 15 pro': { name: 'iPhone 15 Pro', price: 999, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 15 plus': { name: 'iPhone 15 Plus', price: 899, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 15': { name: 'iPhone 15', price: 799, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 14 pro max': { name: 'iPhone 14 Pro Max', price: 1099, releaseDate: '2022-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 14 pro': { name: 'iPhone 14 Pro', price: 999, releaseDate: '2022-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 14 plus': { name: 'iPhone 14 Plus', price: 899, releaseDate: '2022-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 14': { name: 'iPhone 14', price: 799, releaseDate: '2022-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 13 pro max': { name: 'iPhone 13 Pro Max', price: 1099, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 13 pro': { name: 'iPhone 13 Pro', price: 999, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
     'iphone 13': { name: 'iPhone 13', price: 799, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
-    'macbook pro': { name: 'MacBook Pro 14"', price: 1999, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
-    'macbook air': { name: 'MacBook Air M2', price: 1199, releaseDate: '2022-07-15', company: 'Apple Inc.', symbol: 'AAPL' },
-    'ipad pro': { name: 'iPad Pro 12.9"', price: 1099, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
-    'airpods pro': { name: 'AirPods Pro 2nd Gen', price: 249, releaseDate: '2022-09-23', company: 'Apple Inc.', symbol: 'AAPL' },
-    'apple watch': { name: 'Apple Watch Series 9', price: 399, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'iphone 13 mini': { name: 'iPhone 13 mini', price: 699, releaseDate: '2021-09-24', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook pro 16': { name: 'MacBook Pro 16"', price: 2499, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook pro 14': { name: 'MacBook Pro 14"', price: 1999, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook air m3': { name: 'MacBook Air M3', price: 1099, releaseDate: '2024-03-08', company: 'Apple Inc.', symbol: 'AAPL' },
+    'macbook air m2': { name: 'MacBook Air M2', price: 1199, releaseDate: '2022-07-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 12.9': { name: 'iPad Pro 12.9"', price: 1099, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad pro 11': { name: 'iPad Pro 11"', price: 799, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad air': { name: 'iPad Air', price: 599, releaseDate: '2022-03-18', company: 'Apple Inc.', symbol: 'AAPL' },
+    'ipad': { name: 'iPad', price: 449, releaseDate: '2022-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods pro 2': { name: 'AirPods Pro 2nd Gen', price: 249, releaseDate: '2022-09-23', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods 3': { name: 'AirPods 3rd Gen', price: 179, releaseDate: '2021-10-26', company: 'Apple Inc.', symbol: 'AAPL' },
+    'airpods max': { name: 'AirPods Max', price: 549, releaseDate: '2020-12-15', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch ultra 2': { name: 'Apple Watch Ultra 2', price: 799, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch series 9': { name: 'Apple Watch Series 9', price: 399, releaseDate: '2023-09-22', company: 'Apple Inc.', symbol: 'AAPL' },
+    'apple watch se': { name: 'Apple Watch SE', price: 249, releaseDate: '2022-09-16', company: 'Apple Inc.', symbol: 'AAPL' },
 
     // Tesla Products
-    'tesla model 3': { name: 'Tesla Model 3', price: 38990, releaseDate: '2017-07-28', company: 'Tesla Inc.', symbol: 'TSLA' },
-    'tesla model y': { name: 'Tesla Model Y', price: 47740, releaseDate: '2020-03-15', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla model s plaid': { name: 'Tesla Model S Plaid', price: 108990, releaseDate: '2021-06-10', company: 'Tesla Inc.', symbol: 'TSLA' },
     'tesla model s': { name: 'Tesla Model S', price: 74990, releaseDate: '2012-06-22', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla model x plaid': { name: 'Tesla Model X Plaid', price: 108990, releaseDate: '2021-06-10', company: 'Tesla Inc.', symbol: 'TSLA' },
     'tesla model x': { name: 'Tesla Model X', price: 79990, releaseDate: '2015-09-29', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla model y performance': { name: 'Tesla Model Y Performance', price: 52490, releaseDate: '2020-03-15', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla model y': { name: 'Tesla Model Y', price: 47740, releaseDate: '2020-03-15', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla model 3 performance': { name: 'Tesla Model 3 Performance', price: 50990, releaseDate: '2017-07-28', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla model 3': { name: 'Tesla Model 3', price: 38990, releaseDate: '2017-07-28', company: 'Tesla Inc.', symbol: 'TSLA' },
+    'tesla cybertruck': { name: 'Tesla Cybertruck', price: 60890, releaseDate: '2023-11-30', company: 'Tesla Inc.', symbol: 'TSLA' },
 
-    // Gaming Consoles
-    'playstation 5': { name: 'PlayStation 5', price: 499, releaseDate: '2020-11-12', company: 'Sony Group Corporation', symbol: 'SONY' },
+    // Microsoft Products
+    'surface laptop studio 2': { name: 'Surface Laptop Studio 2', price: 1999, releaseDate: '2023-10-03', company: 'Microsoft Corporation', symbol: 'MSFT' },
+    'surface laptop 5': { name: 'Surface Laptop 5', price: 999, releaseDate: '2022-10-25', company: 'Microsoft Corporation', symbol: 'MSFT' },
+    'surface pro 9': { name: 'Surface Pro 9', price: 1099, releaseDate: '2022-10-25', company: 'Microsoft Corporation', symbol: 'MSFT' },
+    'surface studio 2': { name: 'Surface Studio 2', price: 3499, releaseDate: '2018-10-02', company: 'Microsoft Corporation', symbol: 'MSFT' },
     'xbox series x': { name: 'Xbox Series X', price: 499, releaseDate: '2020-11-10', company: 'Microsoft Corporation', symbol: 'MSFT' },
-    'nintendo switch': { name: 'Nintendo Switch', price: 299, releaseDate: '2017-03-03', company: 'Nintendo Co., Ltd.', symbol: 'NTDOY' },
+    'xbox series s': { name: 'Xbox Series S', price: 299, releaseDate: '2020-11-10', company: 'Microsoft Corporation', symbol: 'MSFT' },
+    'xbox one x': { name: 'Xbox One X', price: 499, releaseDate: '2017-11-07', company: 'Microsoft Corporation', symbol: 'MSFT' },
 
-    // Tech Hardware
+    // Sony Products
+    'playstation 5': { name: 'PlayStation 5', price: 499, releaseDate: '2020-11-12', company: 'Sony Group Corporation', symbol: 'SONY' },
+    'playstation 5 digital': { name: 'PlayStation 5 Digital Edition', price: 399, releaseDate: '2020-11-12', company: 'Sony Group Corporation', symbol: 'SONY' },
+    'playstation 4 pro': { name: 'PlayStation 4 Pro', price: 399, releaseDate: '2016-11-10', company: 'Sony Group Corporation', symbol: 'SONY' },
+    'playstation vr2': { name: 'PlayStation VR2', price: 549, releaseDate: '2023-02-22', company: 'Sony Group Corporation', symbol: 'SONY' },
+    'sony wh-1000xm5': { name: 'Sony WH-1000XM5 Headphones', price: 399, releaseDate: '2022-05-12', company: 'Sony Group Corporation', symbol: 'SONY' },
+    'sony a7r v': { name: 'Sony A7R V Camera', price: 3898, releaseDate: '2022-10-26', company: 'Sony Group Corporation', symbol: 'SONY' },
+    'sony a7 iv': { name: 'Sony A7 IV Camera', price: 2498, releaseDate: '2021-10-21', company: 'Sony Group Corporation', symbol: 'SONY' },
+
+    // Nintendo Products
+    'nintendo switch oled': { name: 'Nintendo Switch OLED', price: 349, releaseDate: '2021-10-08', company: 'Nintendo Co., Ltd.', symbol: 'NTDOY' },
+    'nintendo switch': { name: 'Nintendo Switch', price: 299, releaseDate: '2017-03-03', company: 'Nintendo Co., Ltd.', symbol: 'NTDOY' },
+    'nintendo switch lite': { name: 'Nintendo Switch Lite', price: 199, releaseDate: '2019-09-20', company: 'Nintendo Co., Ltd.', symbol: 'NTDOY' },
+
+    // NVIDIA Products
     'nvidia rtx 4090': { name: 'NVIDIA GeForce RTX 4090', price: 1599, releaseDate: '2022-10-12', company: 'NVIDIA Corporation', symbol: 'NVDA' },
     'nvidia rtx 4080': { name: 'NVIDIA GeForce RTX 4080', price: 1199, releaseDate: '2022-11-16', company: 'NVIDIA Corporation', symbol: 'NVDA' },
-    'amd ryzen 9': { name: 'AMD Ryzen 9 7950X', price: 699, releaseDate: '2022-09-27', company: 'Advanced Micro Devices', symbol: 'AMD' },
+    'nvidia rtx 4070': { name: 'NVIDIA GeForce RTX 4070', price: 599, releaseDate: '2023-04-13', company: 'NVIDIA Corporation', symbol: 'NVDA' },
+    'nvidia rtx 3090': { name: 'NVIDIA GeForce RTX 3090', price: 1499, releaseDate: '2020-09-24', company: 'NVIDIA Corporation', symbol: 'NVDA' },
+    'nvidia rtx 3080': { name: 'NVIDIA GeForce RTX 3080', price: 699, releaseDate: '2020-09-17', company: 'NVIDIA Corporation', symbol: 'NVDA' },
 
-    // Fashion/Shoes
-    'nike air jordan': { name: 'Nike Air Jordan 1', price: 170, releaseDate: '1985-04-01', company: 'Nike Inc.', symbol: 'NKE' },
-    'adidas yeezy': { name: 'Adidas Yeezy Boost 350', price: 220, releaseDate: '2015-06-27', company: 'Adidas AG', symbol: 'ADDYY' },
-    'converse chuck taylor': { name: 'Converse Chuck Taylor All Star', price: 60, releaseDate: '1917-01-01', company: 'Nike Inc.', symbol: 'NKE' },
+    // AMD Products
+    'amd ryzen 9 7950x': { name: 'AMD Ryzen 9 7950X', price: 699, releaseDate: '2022-09-27', company: 'Advanced Micro Devices', symbol: 'AMD' },
+    'amd ryzen 7 7700x': { name: 'AMD Ryzen 7 7700X', price: 399, releaseDate: '2022-09-27', company: 'Advanced Micro Devices', symbol: 'AMD' },
+    'amd ryzen 5 7600x': { name: 'AMD Ryzen 5 7600X', price: 299, releaseDate: '2022-09-27', company: 'Advanced Micro Devices', symbol: 'AMD' },
 
-    // Other Electronics
+    // Samsung Products
+    'samsung galaxy s24 ultra': { name: 'Samsung Galaxy S24 Ultra', price: 1299, releaseDate: '2024-01-17', company: 'Samsung Electronics', symbol: 'SSNLF' },
+    'samsung galaxy s24 plus': { name: 'Samsung Galaxy S24 Plus', price: 999, releaseDate: '2024-01-17', company: 'Samsung Electronics', symbol: 'SSNLF' },
+    'samsung galaxy s24': { name: 'Samsung Galaxy S24', price: 799, releaseDate: '2024-01-17', company: 'Samsung Electronics', symbol: 'SSNLF' },
+    'samsung galaxy s23 ultra': { name: 'Samsung Galaxy S23 Ultra', price: 1199, releaseDate: '2023-02-17', company: 'Samsung Electronics', symbol: 'SSNLF' },
+    'samsung galaxy s23 plus': { name: 'Samsung Galaxy S23 Plus', price: 999, releaseDate: '2023-02-17', company: 'Samsung Electronics', symbol: 'SSNLF' },
     'samsung galaxy s23': { name: 'Samsung Galaxy S23', price: 799, releaseDate: '2023-02-17', company: 'Samsung Electronics', symbol: 'SSNLF' },
-    'google pixel 7': { name: 'Google Pixel 7', price: 599, releaseDate: '2022-10-13', company: 'Alphabet Inc.', symbol: 'GOOGL' },
-    'meta quest 3': { name: 'Meta Quest 3', price: 499, releaseDate: '2023-10-10', company: 'Meta Platforms Inc.', symbol: 'META' },
+    'samsung galaxy z fold 5': { name: 'Samsung Galaxy Z Fold 5', price: 1799, releaseDate: '2023-08-11', company: 'Samsung Electronics', symbol: 'SSNLF' },
+    'samsung galaxy z flip 5': { name: 'Samsung Galaxy Z Flip 5', price: 999, releaseDate: '2023-08-11', company: 'Samsung Electronics', symbol: 'SSNLF' },
 
-    // Cars
+    // Google Products
+    'google pixel 8 pro': { name: 'Google Pixel 8 Pro', price: 999, releaseDate: '2023-10-12', company: 'Alphabet Inc.', symbol: 'GOOGL' },
+    'google pixel 8': { name: 'Google Pixel 8', price: 699, releaseDate: '2023-10-12', company: 'Alphabet Inc.', symbol: 'GOOGL' },
+    'google pixel 7 pro': { name: 'Google Pixel 7 Pro', price: 899, releaseDate: '2022-10-13', company: 'Alphabet Inc.', symbol: 'GOOGL' },
+    'google pixel 7': { name: 'Google Pixel 7', price: 599, releaseDate: '2022-10-13', company: 'Alphabet Inc.', symbol: 'GOOGL' },
+    'google pixel watch 2': { name: 'Google Pixel Watch 2', price: 349, releaseDate: '2023-10-12', company: 'Alphabet Inc.', symbol: 'GOOGL' },
+    'google pixel buds pro': { name: 'Google Pixel Buds Pro', price: 199, releaseDate: '2022-07-28', company: 'Alphabet Inc.', symbol: 'GOOGL' },
+
+    // Meta Products
+    'meta quest 3': { name: 'Meta Quest 3', price: 499, releaseDate: '2023-10-10', company: 'Meta Platforms Inc.', symbol: 'META' },
+    'meta quest 2': { name: 'Meta Quest 2', price: 299, releaseDate: '2020-10-13', company: 'Meta Platforms Inc.', symbol: 'META' },
+    'meta quest pro': { name: 'Meta Quest Pro', price: 1499, releaseDate: '2022-10-25', company: 'Meta Platforms Inc.', symbol: 'META' },
+    'meta ray-ban stories': { name: 'Meta Ray-Ban Stories', price: 299, releaseDate: '2021-09-09', company: 'Meta Platforms Inc.', symbol: 'META' },
+
+    // Nike Products
+    'nike air jordan 1': { name: 'Nike Air Jordan 1', price: 170, releaseDate: '1985-04-01', company: 'Nike Inc.', symbol: 'NKE' },
+    'nike air max 270': { name: 'Nike Air Max 270', price: 150, releaseDate: '2018-02-01', company: 'Nike Inc.', symbol: 'NKE' },
+    'nike air force 1': { name: 'Nike Air Force 1', price: 90, releaseDate: '1982-01-01', company: 'Nike Inc.', symbol: 'NKE' },
+    'nike dunk low': { name: 'Nike Dunk Low', price: 100, releaseDate: '1985-01-01', company: 'Nike Inc.', symbol: 'NKE' },
+    'nike react element 55': { name: 'Nike React Element 55', price: 130, releaseDate: '2018-06-01', company: 'Nike Inc.', symbol: 'NKE' },
+
+    // Adidas Products
+    'adidas yeezy boost 350': { name: 'Adidas Yeezy Boost 350', price: 220, releaseDate: '2015-06-27', company: 'Adidas AG', symbol: 'ADDYY' },
+    'adidas ultraboost 22': { name: 'Adidas Ultraboost 22', price: 190, releaseDate: '2022-01-01', company: 'Adidas AG', symbol: 'ADDYY' },
+    'adidas stan smith': { name: 'Adidas Stan Smith', price: 80, releaseDate: '1965-01-01', company: 'Adidas AG', symbol: 'ADDYY' },
+    'adidas nmd r1': { name: 'Adidas NMD R1', price: 130, releaseDate: '2015-12-10', company: 'Adidas AG', symbol: 'ADDYY' },
+
+    // Converse Products
+    'converse chuck taylor all star': { name: 'Converse Chuck Taylor All Star', price: 60, releaseDate: '1917-01-01', company: 'Nike Inc.', symbol: 'NKE' },
+    'converse one star': { name: 'Converse One Star', price: 70, releaseDate: '1974-01-01', company: 'Nike Inc.', symbol: 'NKE' },
+
+    // Automotive Companies
     'bmw 3 series': { name: 'BMW 3 Series', price: 41450, releaseDate: '2019-03-01', company: 'Bayerische Motoren Werke AG', symbol: 'BMWYY' },
+    'bmw x5': { name: 'BMW X5', price: 60100, releaseDate: '2019-06-01', company: 'Bayerische Motoren Werke AG', symbol: 'BMWYY' },
+    'bmw i4': { name: 'BMW i4', price: 55400, releaseDate: '2022-03-01', company: 'Bayerische Motoren Werke AG', symbol: 'BMWYY' },
     'mercedes c class': { name: 'Mercedes-Benz C-Class', price: 43550, releaseDate: '2021-02-23', company: 'Mercedes-Benz Group AG', symbol: 'MBGYY' },
-    'audi a4': { name: 'Audi A4', price: 39500, releaseDate: '2017-01-01', company: 'Volkswagen AG', symbol: 'VWAGY' }
+    'mercedes e class': { name: 'Mercedes-Benz E-Class', price: 55400, releaseDate: '2021-02-23', company: 'Mercedes-Benz Group AG', symbol: 'MBGYY' },
+    'mercedes s class': { name: 'Mercedes-Benz S-Class', price: 111000, releaseDate: '2021-02-23', company: 'Mercedes-Benz Group AG', symbol: 'MBGYY' },
+    'audi a4': { name: 'Audi A4', price: 39500, releaseDate: '2017-01-01', company: 'Volkswagen AG', symbol: 'VWAGY' },
+    'audi q5': { name: 'Audi Q5', price: 43200, releaseDate: '2017-01-01', company: 'Volkswagen AG', symbol: 'VWAGY' },
+    'audi etron': { name: 'Audi e-tron', price: 65800, releaseDate: '2019-04-01', company: 'Volkswagen AG', symbol: 'VWAGY' },
+
+    // Ford Products
+    'ford f-150': { name: 'Ford F-150', price: 28490, releaseDate: '2021-01-01', company: 'Ford Motor Company', symbol: 'F' },
+    'ford mustang mach-e': { name: 'Ford Mustang Mach-E', price: 42895, releaseDate: '2021-01-01', company: 'Ford Motor Company', symbol: 'F' },
+    'ford bronco': { name: 'Ford Bronco', price: 28500, releaseDate: '2021-06-01', company: 'Ford Motor Company', symbol: 'F' },
+
+    // General Motors Products
+    'chevrolet silverado': { name: 'Chevrolet Silverado', price: 28900, releaseDate: '2019-01-01', company: 'General Motors Company', symbol: 'GM' },
+    'chevrolet bolt euv': { name: 'Chevrolet Bolt EUV', price: 33995, releaseDate: '2022-01-01', company: 'General Motors Company', symbol: 'GM' },
+    'cadillac lyriq': { name: 'Cadillac Lyriq', price: 59990, releaseDate: '2022-01-01', company: 'General Motors Company', symbol: 'GM' },
+
+    // Home & Lifestyle
+    'dyson v15 detect': { name: 'Dyson V15 Detect Vacuum', price: 749, releaseDate: '2021-03-01', company: 'Dyson Ltd.', symbol: 'DYSON' },
+    'dyson airwrap': { name: 'Dyson Airwrap', price: 549, releaseDate: '2018-10-01', company: 'Dyson Ltd.', symbol: 'DYSON' },
+    'dyson supersonic': { name: 'Dyson Supersonic Hair Dryer', price: 399, releaseDate: '2016-04-01', company: 'Dyson Ltd.', symbol: 'DYSON' },
+
+    // Kitchen Appliances
+    'vitamix a3500': { name: 'Vitamix A3500 Blender', price: 599, releaseDate: '2019-01-01', company: 'Vitamix Corporation', symbol: 'VITAMIX' },
+    'kitchenaid stand mixer': { name: 'KitchenAid Stand Mixer', price: 379, releaseDate: '1919-01-01', company: 'Whirlpool Corporation', symbol: 'WHR' },
+    'instant pot duo': { name: 'Instant Pot Duo', price: 99, releaseDate: '2010-01-01', company: 'Instant Brands Inc.', symbol: 'INSTANT' },
+
+    // Furniture & Home
+    'herman miller aeron': { name: 'Herman Miller Aeron Chair', price: 1445, releaseDate: '1994-01-01', company: 'Herman Miller Inc.', symbol: 'MLHR' },
+    'ikea hemnes': { name: 'IKEA Hemnes Dresser', price: 199, releaseDate: '2000-01-01', company: 'Inter IKEA Group', symbol: 'IKEA' },
+
+    // Beauty & Personal Care
+    'dyson airwrap': { name: 'Dyson Airwrap', price: 549, releaseDate: '2018-10-01', company: 'Dyson Ltd.', symbol: 'DYSON' },
+    'foreo luna 3': { name: 'FOREO Luna 3', price: 199, releaseDate: '2019-01-01', company: 'FOREO AB', symbol: 'FOREO' },
+
+    // Outdoor & Sports
+    'peloton bike': { name: 'Peloton Bike', price: 1445, releaseDate: '2014-01-01', company: 'Peloton Interactive Inc.', symbol: 'PTON' },
+    'peloton bike plus': { name: 'Peloton Bike+', price: 2495, releaseDate: '2020-09-01', company: 'Peloton Interactive Inc.', symbol: 'PTON' },
+    'peloton tread': { name: 'Peloton Tread', price: 2495, releaseDate: '2018-01-01', company: 'Peloton Interactive Inc.', symbol: 'PTON' },
+
+    // Gaming & Entertainment
+    'steam deck': { name: 'Steam Deck', price: 399, releaseDate: '2022-02-25', company: 'Valve Corporation', symbol: 'VALVE' },
+    'oculus quest 2': { name: 'Oculus Quest 2', price: 299, releaseDate: '2020-10-13', company: 'Meta Platforms Inc.', symbol: 'META' }
 };
 
 class ShouldaStocksApp {
@@ -289,7 +408,8 @@ class ShouldaStocksApp {
             console.error('Error fetching real stock data:', error);
             console.log('Falling back to mock data');
             this.showApiStatus('Using simulated data');
-            return this.generateMockStockData(symbol, startDate);
+            const mockData = this.generateMockStockData(symbol, startDate);
+            return { data: mockData, splits: [] };
         }
     }
 
