@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShouldaStocks - What If You Invested Instead?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>ShouldaStocks</h1>
+                <p>Discover what your purchases could have been worth</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" id="productSearch" placeholder="Search for any product (iPhone, Tesla Model 3, MacBook Pro, etc.)" class="search-input">
+                    <button id="searchBtn" class="search-btn">Search</button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h2 id="productName"></h2>
+                        <div class="product-meta">
+                            <span class="price" id="productPrice"></span>
+                            <span class="release-date" id="releaseDate"></span>
+                            <span class="company" id="companyName"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="investment-analysis">
+                    <div class="investment-summary">
+                        <div class="summary-card">
+                            <h3>Investment Summary</h3>
+                            <div class="summary-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Shares Purchased</span>
+                                    <span class="stat-value" id="sharesPurchased"></span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Current Value</span>
+                                    <span class="stat-value" id="currentValue"></span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Total Return</span>
+                                    <span class="stat-value" id="totalReturn"></span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Return %</span>
+                                    <span class="stat-value" id="returnPercentage"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Investment Performance</h3>
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing investment potential...</p>
+            </div>
+
+            <div class="error" id="error" style="display: none;">
+                <p id="errorMessage"></p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Data provided by financial APIs. Past performance does not guarantee future results.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
