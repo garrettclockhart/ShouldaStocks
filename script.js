@@ -190,7 +190,9 @@ class ShouldaStocksApp {
     async analyzeInvestment(product, silentRefresh = false) {
         try {
             // Get historical stock data
-            const stockData = await this.fetchStockData(product.symbol, product.releaseDate);
+            const result = await this.fetchStockData(product.symbol, product.releaseDate);
+            const stockData = result.data || result; // Handle both old and new formats
+            const splits = result.splits || [];
             
             if (!stockData || stockData.length === 0) {
                 throw new Error('No stock data available');
@@ -210,7 +212,8 @@ class ShouldaStocksApp {
                 currentValue,
                 totalReturn,
                 returnPercentage,
-                stockData
+                stockData,
+                splits
             }, silentRefresh);
 
         } catch (error) {
@@ -233,7 +236,7 @@ class ShouldaStocksApp {
             
             if (Date.now() - cacheTime < oneHour) {
                 console.log('Using cached data for', symbol);
-                return cachedData.data;
+                return cachedData.data ? { data: cachedData.data, splits: cachedData.splits || [] } : cachedData;
             }
         }
         
@@ -241,9 +244,9 @@ class ShouldaStocksApp {
             // Show API status
             this.showApiStatus('Fetching real-time data...');
             
-            // Try to get real data from Alpha Vantage
+            // Try to get split-adjusted data from Alpha Vantage
             const response = await fetch(
-                `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}&outputsize=full`
+                `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}&outputsize=full`
             );
             
             if (!response.ok) {
@@ -269,16 +272,18 @@ class ShouldaStocksApp {
             }
             
             const processedData = this.processAlphaVantageData(timeSeries, startDate);
+            const splitData = this.extractSplitData(timeSeries);
             
             // Cache the data
             this.dataCache.set(cacheKey, {
                 data: processedData,
+                splits: splitData,
                 timestamp: Date.now()
             });
             
             console.log('Fetched fresh data for', symbol);
             this.showApiStatus('Real-time data loaded!');
-            return processedData;
+            return { data: processedData, splits: splitData };
             
         } catch (error) {
             console.error('Error fetching real stock data:', error);
@@ -300,15 +305,45 @@ class ShouldaStocksApp {
                 const dayData = timeSeries[date];
                 data.push({
                     date: date,
-                    close: parseFloat(dayData['4. close']),
+                    close: parseFloat(dayData['5. adjusted close']), // Use adjusted close for split-adjusted prices
                     open: parseFloat(dayData['1. open']),
                     high: parseFloat(dayData['2. high']),
                     low: parseFloat(dayData['3. low']),
-                    volume: parseInt(dayData['5. volume'])
+                    volume: parseInt(dayData['6. volume']),
+                    splitCoefficient: parseFloat(dayData['8. split coefficient']) || 1.0
                 });
             });
         
         return data;
+    }
+
+    extractSplitData(timeSeries) {
+        const splits = [];
+        
+        Object.keys(timeSeries)
+            .sort((a, b) => new Date(a) - new Date(b))
+            .forEach(date => {
+                const dayData = timeSeries[date];
+                const splitCoeff = parseFloat(dayData['8. split coefficient']);
+                
+                if (splitCoeff && splitCoeff !== 1.0) {
+                    splits.push({
+                        date: date,
+                        coefficient: splitCoeff,
+                        ratio: this.formatSplitRatio(splitCoeff)
+                    });
+                }
+            });
+        
+        return splits;
+    }
+
+    formatSplitRatio(coefficient) {
+        if (coefficient > 1) {
+            return `${coefficient}:1`;
+        } else {
+            return `1:${1/coefficient}`;
+        }
     }
 
     generateMockStockData(symbol, startDate) {
@@ -387,10 +422,29 @@ class ShouldaStocksApp {
         returnPercentageEl.className = `stat-value ${metrics.returnPercentage >= 0 ? 'positive' : 'negative'}`;
 
         // Create chart
-        this.createChart(product, metrics.stockData, metrics.sharesPurchased);
+        this.createChart(product, metrics.stockData, metrics.sharesPurchased, metrics.splits);
+        
+        // Display split information
+        this.displaySplitInfo(metrics.splits);
     }
 
-    createChart(product, stockData, sharesPurchased) {
+    displaySplitInfo(splits) {
+        const splitInfoEl = document.getElementById('splitInfo');
+        const splitListEl = document.getElementById('splitList');
+        
+        if (splits && splits.length > 0) {
+            splitListEl.innerHTML = splits.map(split => `
+                <div class="split-item">
+                    <span class="split-date">${new Date(split.date).toLocaleDateString()}</span>
+                    <span class="split-ratio">${split.ratio} Split</span>
+                </div>
+            `).join('');
+            splitInfoEl.style.display = 'block';
+        } else {
+            splitInfoEl.style.display = 'none';
+        }
+
+    createChart(product, stockData, sharesPurchased, splits = []) {
         const ctx = document.getElementById('investmentChart').getContext('2d');
         
         if (this.chart) {
@@ -400,6 +454,22 @@ class ShouldaStocksApp {
         const labels = stockData.map(d => new Date(d.date).toLocaleDateString());
         const stockPrices = stockData.map(d => d.close);
         const investmentValues = stockData.map(d => d.close * sharesPurchased);
+
+        // Create split annotations
+        const splitAnnotations = splits.map(split => ({
+            type: 'line',
+            mode: 'vertical',
+            scaleID: 'x',
+            value: new Date(split.date).toLocaleDateString(),
+            borderColor: '#ff6b6b',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            label: {
+                content: `${split.ratio} Split`,
+                enabled: true,
+                position: 'top'
+            }
+        }));
 
         this.chart = new Chart(ctx, {
             type: 'line',
@@ -442,6 +512,9 @@ class ShouldaStocksApp {
                     legend: {
                         display: true,
                         position: 'top'
+                    },
+                    annotation: {
+                        annotations: splitAnnotations
                     }
                 },
                 scales: {
@@ -527,6 +600,9 @@ class ShouldaStocksApp {
         }, 3000);
     }
 }
+
+// Register Chart.js plugins
+Chart.register(ChartAnnotation);
 
 // Initialize the app when the page loads
 let app;
