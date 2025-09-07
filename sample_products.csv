@@ -1,0 +1,30 @@
+product_id,release_date,price,company,symbol
+iphone_16_pro,2024-09-15,1099.00,Apple Inc.,AAPL
+iphone_16,2024-09-15,799.00,Apple Inc.,AAPL
+macbook_pro_m4,2024-10-30,1999.00,Apple Inc.,AAPL
+macbook_air_m4,2024-10-30,1099.00,Apple Inc.,AAPL
+ipad_pro_m4,2024-05-07,1099.00,Apple Inc.,AAPL
+apple_watch_series_10,2024-09-15,399.00,Apple Inc.,AAPL
+airpods_pro_3,2024-09-15,249.00,Apple Inc.,AAPL
+tesla_model_3_highland,2024-01-01,38990.00,Tesla Inc.,TSLA
+tesla_model_y_2024,2024-01-01,47740.00,Tesla Inc.,TSLA
+tesla_cybertruck_production,2023-11-30,60890.00,Tesla Inc.,TSLA
+surface_laptop_6,2024-05-20,1099.00,Microsoft Corporation,MSFT
+surface_pro_11,2024-05-20,999.00,Microsoft Corporation,MSFT
+xbox_series_x_pro,2024-11-01,599.00,Microsoft Corporation,MSFT
+playstation_5_pro,2024-11-01,699.00,Sony Group Corporation,SONY
+playstation_portal_2,2024-11-01,199.00,Sony Group Corporation,SONY
+samsung_galaxy_s25_ultra,2025-01-17,1399.00,Samsung Electronics,SSNLF
+samsung_galaxy_s25_plus,2025-01-17,1099.00,Samsung Electronics,SSNLF
+samsung_galaxy_s25,2025-01-17,899.00,Samsung Electronics,SSNLF
+google_pixel_9_pro,2024-10-15,1099.00,Alphabet Inc.,GOOGL
+google_pixel_9,2024-10-15,799.00,Alphabet Inc.,GOOGL
+meta_quest_4,2024-10-15,599.00,Meta Platforms Inc.,META
+meta_ray_ban_2,2024-10-15,399.00,Meta Platforms Inc.,META
+nvidia_rtx_5090,2024-10-01,1999.00,NVIDIA Corporation,NVDA
+nvidia_rtx_5080,2024-10-01,1399.00,NVIDIA Corporation,NVDA
+amd_ryzen_9_9950x,2024-07-31,799.00,Advanced Micro Devices,AMD
+amd_ryzen_7_9700x,2024-07-31,449.00,Advanced Micro Devices,AMD
+nintendo_switch_2,2025-03-01,399.00,Nintendo Co. Ltd.,NTDOY
+nike_air_jordan_1_2024,2024-01-01,180.00,Nike Inc.,NKE
+adidas_ultraboost_24,2024-01-01,200.00,Adidas AG,ADDYY

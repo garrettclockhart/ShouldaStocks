@@ -1,0 +1,17 @@
+{
+  "name": "shoulda-stocks-import",
+  "version": "1.0.0",
+  "description": "Product data import script for ShouldaStocks Supabase database",
+  "main": "import_products.js",
+  "scripts": {
+    "import:sample": "node import_products.js sample",
+    "import:csv": "node import_products.js csv",
+    "import:json": "node import_products.js json"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "keywords": ["supabase", "import", "products"],
+  "author": "",
+  "license": "MIT"
+}

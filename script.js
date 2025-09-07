@@ -1,4 +1,11 @@
-// Comprehensive product database with major US consumer companies
+// Supabase configuration
+const SUPABASE_URL = 'https://viwmgaptepnldhdymkzg.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpd21nYXB0ZXBubGRoZHlta3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ5NzQ4MDAsImV4cCI6MjA1MDU1MDgwMH0.Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8Ej8'; // Replace with your actual anon key
+
+// Initialize Supabase client
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Legacy product database - will be removed after migration
 const productDatabase = {
     // Apple Products - Comprehensive History
     // iPhone Series
@@ -292,6 +299,7 @@ class ShouldaStocksApp {
         this.lastRefreshTime = null;
         this.currentProduct = null;
         this.dataCache = new Map(); // Cache for API responses
+        this.productsCache = new Map(); // Cache for products from Supabase
         this.init();
     }
 
@@ -368,46 +376,77 @@ class ShouldaStocksApp {
         });
     }
 
-    setupCompanyDropdown() {
+    async setupCompanyDropdown() {
         const companySelect = document.getElementById('companySelect');
         const productSelect = document.getElementById('productSelect');
         
-        // Get unique companies from product database
-        const companies = [...new Set(Object.values(productDatabase).map(product => product.company))].sort();
-        
-        // Populate company dropdown
-        companies.forEach(company => {
-            const option = document.createElement('option');
-            option.value = company;
-            option.textContent = company;
-            companySelect.appendChild(option);
-        });
-        
-        // Handle company selection
-        companySelect.addEventListener('change', (e) => {
-            const selectedCompany = e.target.value;
-            productSelect.innerHTML = '<option value="">Choose a product...</option>';
+        try {
+            // Get unique companies from Supabase
+            const { data: companies, error } = await supabase
+                .from('products')
+                .select('company')
+                .order('company');
             
-            if (selectedCompany) {
-                // Filter products by company
-                const companyProducts = Object.entries(productDatabase)
-                    .filter(([key, product]) => product.company === selectedCompany)
-                    .sort((a, b) => new Date(b[1].releaseDate) - new Date(a[1].releaseDate)); // Sort by release date, newest first
-                
-                companyProducts.forEach(([key, product]) => {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.textContent = `${product.name} - $${product.price.toLocaleString()} (${new Date(product.releaseDate).getFullYear()})`;
-                    productSelect.appendChild(option);
-                });
-                
-                productSelect.disabled = false;
-                document.getElementById('browseSearchBtn').disabled = false;
-            } else {
-                productSelect.disabled = true;
-                document.getElementById('browseSearchBtn').disabled = true;
+            if (error) {
+                console.error('Error fetching companies:', error);
+                this.showError('Failed to load companies. Please refresh the page.');
+                return;
             }
-        });
+            
+            // Get unique companies
+            const uniqueCompanies = [...new Set(companies.map(item => item.company))].sort();
+            
+            // Populate company dropdown
+            uniqueCompanies.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company;
+                option.textContent = company;
+                companySelect.appendChild(option);
+            });
+            
+            // Handle company selection
+            companySelect.addEventListener('change', async (e) => {
+                const selectedCompany = e.target.value;
+                productSelect.innerHTML = '<option value="">Choose a product...</option>';
+                
+                if (selectedCompany) {
+                    try {
+                        // Fetch products for selected company
+                        const { data: products, error } = await supabase
+                            .from('products')
+                            .select('*')
+                            .eq('company', selectedCompany)
+                            .order('release_date', { ascending: false }); // Sort by release date, newest first
+                        
+                        if (error) {
+                            console.error('Error fetching products:', error);
+                            this.showError('Failed to load products for this company.');
+                            return;
+                        }
+                        
+                        products.forEach(product => {
+                            const option = document.createElement('option');
+                            option.value = product.key;
+                            option.textContent = `${product.name} - $${product.price.toLocaleString()} (${new Date(product.release_date).getFullYear()})`;
+                            productSelect.appendChild(option);
+                        });
+                        
+                        productSelect.disabled = false;
+                        document.getElementById('browseSearchBtn').disabled = false;
+                    } catch (error) {
+                        console.error('Error loading products:', error);
+                        this.showError('Failed to load products. Please try again.');
+                    }
+                } else {
+                    productSelect.disabled = true;
+                    document.getElementById('browseSearchBtn').disabled = true;
+                }
+            });
+            
+        } catch (error) {
+            console.error('Error setting up company dropdown:', error);
+            this.showError('Failed to initialize company dropdown. Please refresh the page.');
+        }
     }
 
     setupSearchSuggestions() {
@@ -422,7 +461,7 @@ class ShouldaStocksApp {
         });
     }
 
-    showSuggestions(query) {
+    async showSuggestions(query) {
         const suggestions = document.getElementById('searchSuggestions');
         
         if (query.length < 2) {
@@ -430,34 +469,47 @@ class ShouldaStocksApp {
             return;
         }
 
-        const matches = Object.keys(productDatabase).filter(key => 
-            key.toLowerCase().includes(query.toLowerCase())
-        ).slice(0, 5);
-
-        if (matches.length === 0) {
-            suggestions.style.display = 'none';
-            return;
-        }
-
-        suggestions.innerHTML = matches.map(key => {
-            const product = productDatabase[key];
-            return `<div class="suggestion-item" data-product="${key}">
-                <strong>${product.name}</strong><br>
-                <small>${product.company} - $${product.price.toLocaleString()}</small>
-            </div>`;
-        }).join('');
-
-        // Add click handlers to suggestions
-        suggestions.querySelectorAll('.suggestion-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const productKey = item.dataset.product;
-                document.getElementById('productSearch').value = productKey;
+        try {
+            // Search products in Supabase
+            const { data: products, error } = await supabase
+                .from('products')
+                .select('*')
+                .or(`name.ilike.%${query}%,key.ilike.%${query}%`)
+                .limit(5);
+            
+            if (error) {
+                console.error('Error fetching suggestions:', error);
                 suggestions.style.display = 'none';
-                this.handleSearch();
-            });
-        });
+                return;
+            }
 
-        suggestions.style.display = 'block';
+            if (products.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            suggestions.innerHTML = products.map(product => {
+                return `<div class="suggestion-item" data-product="${product.key}">
+                    <strong>${product.name}</strong><br>
+                    <small>${product.company} - $${product.price.toLocaleString()}</small>
+                </div>`;
+            }).join('');
+
+            // Add click handlers to suggestions
+            suggestions.querySelectorAll('.suggestion-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const productKey = item.dataset.product;
+                    document.getElementById('productSearch').value = productKey;
+                    suggestions.style.display = 'none';
+                    this.handleSearch();
+                });
+            });
+
+            suggestions.style.display = 'block';
+        } catch (error) {
+            console.error('Error showing suggestions:', error);
+            suggestions.style.display = 'none';
+        }
     }
 
     async handleSearch() {
@@ -468,22 +520,29 @@ class ShouldaStocksApp {
             return;
         }
 
-        // Find matching product
-        const productKey = Object.keys(productDatabase).find(key => 
-            key.toLowerCase().includes(query) || 
-            productDatabase[key].name.toLowerCase().includes(query)
-        );
-
-        if (!productKey) {
-            this.showError('Product not found. Try searching for: iPhone, Tesla Model 3, MacBook Pro, PlayStation 5, etc.');
-            return;
-        }
-
-        const product = productDatabase[productKey];
-        this.currentProduct = product; // Store current product for refresh
-        this.showLoading(true);
-        
         try {
+            // Find matching product in Supabase
+            const { data: products, error } = await supabase
+                .from('products')
+                .select('*')
+                .or(`name.ilike.%${query}%,key.ilike.%${query}%`)
+                .limit(1);
+            
+            if (error) {
+                console.error('Error searching products:', error);
+                this.showError('Failed to search products. Please try again.');
+                return;
+            }
+
+            if (!products || products.length === 0) {
+                this.showError('Product not found. Try searching for: iPhone, Tesla Model 3, MacBook Pro, PlayStation 5, etc.');
+                return;
+            }
+
+            const product = products[0];
+            this.currentProduct = product; // Store current product for refresh
+            this.showLoading(true);
+            
             await this.analyzeInvestment(product);
         } catch (error) {
             console.error('Error analyzing investment:', error);
@@ -502,11 +561,24 @@ class ShouldaStocksApp {
             return;
         }
 
-        const product = productDatabase[selectedProductKey];
-        this.currentProduct = product; // Store current product for refresh
-        this.showLoading(true);
-        
         try {
+            // Get product from Supabase
+            const { data: products, error } = await supabase
+                .from('products')
+                .select('*')
+                .eq('key', selectedProductKey)
+                .single();
+            
+            if (error) {
+                console.error('Error fetching product:', error);
+                this.showError('Failed to load product data. Please try again.');
+                return;
+            }
+
+            const product = products;
+            this.currentProduct = product; // Store current product for refresh
+            this.showLoading(true);
+            
             await this.analyzeInvestment(product);
         } catch (error) {
             console.error('Error analyzing investment:', error);
@@ -519,7 +591,7 @@ class ShouldaStocksApp {
     async analyzeInvestment(product, silentRefresh = false) {
         try {
             // Get historical stock data
-            const result = await this.fetchStockData(product.symbol, product.releaseDate);
+            const result = await this.fetchStockData(product.symbol, product.release_date);
             const stockData = result.data || result; // Handle both old and new formats
             const splits = result.splits || [];
             
@@ -736,7 +808,7 @@ class ShouldaStocksApp {
         // Update product info
         document.getElementById('productName').textContent = product.name;
         document.getElementById('productPrice').textContent = `$${product.price.toLocaleString()}`;
-        document.getElementById('releaseDate').textContent = `Released: ${new Date(product.releaseDate).toLocaleDateString()}`;
+        document.getElementById('releaseDate').textContent = `Released: ${new Date(product.release_date).toLocaleDateString()}`;
         document.getElementById('companyName').textContent = product.company;
 
         // Update investment metrics
